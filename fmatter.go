@@ -4,9 +4,9 @@ package fmatter
 
 import (
 	"bytes"
+	"gopkg.in/yaml.v2"
 	"io"
 	"io/ioutil"
-	"launchpad.net/goyaml"
 	"strings"
 	"unicode"
 )
@@ -69,7 +69,7 @@ func Read(data []byte, frontmatter interface{}) (content []byte, err error) {
 		}
 	}
 
-	err = goyaml.Unmarshal(data[yamlStart:yamlEnd], frontmatter)
+	err = yaml.Unmarshal(data[yamlStart:yamlEnd], frontmatter)
 	if err != nil {
 		return nil, err
 	}
